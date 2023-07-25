@@ -6,6 +6,6 @@
   ,
   "scripts":{
     "start:backend":"nodemon api/app.js",
-    "start:frontend": "cd frontend && npm run dev"
+    "dev": "cd frontend && npm run dev"
   }
 }

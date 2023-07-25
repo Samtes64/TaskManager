@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
+require('dotenv').config();
 
 const { mongoose } = require("./db/mongoose");
 
@@ -10,7 +11,7 @@ const bodyParser = require("body-parser");
 const { List, Task } = require("./db/models");
 
 //cores header middleware
-app.use(cors())
+app.use(cors());
 
 //Load middleware
 app.use(bodyParser.json());
@@ -142,11 +143,10 @@ Purpose: Delete an existing task
 app.delete("/lists/:listId/tasks/:taskId", (req, res) => {
   //want to Delete an existing task (specified by taskId)
   Task.findByIdAndRemove({
-    _id:req.params.taskId,
-    _listId: req.params.listId
-  }).then((removedTaskDoc)=>
-  {
-    res.send(removedTaskDoc)
+    _id: req.params.taskId,
+    _listId: req.params.listId,
+  }).then((removedTaskDoc) => {
+    res.send(removedTaskDoc);
   });
 });
 
@@ -155,14 +155,14 @@ Get /lists/:listId/tasks/:taskId
 Purpose: get only one task based on the id
 */
 
-app.get('/lists/:listId/tasks/:taskId',(req, res)=>{
-    Task.findOne({
-        _id: req.params.taskId,
-        _listId:req.params.listId
-    }).then((task)=>{
-        res.send(task)
-    })
-})
+app.get("/lists/:listId/tasks/:taskId", (req, res) => {
+  Task.findOne({
+    _id: req.params.taskId,
+    _listId: req.params.listId,
+  }).then((task) => {
+    res.send(task);
+  });
+});
 
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
