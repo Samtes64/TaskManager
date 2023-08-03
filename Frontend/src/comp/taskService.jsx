@@ -3,9 +3,14 @@ import WebRequestService from "./webRequestService"; // Adjust the import path
 const TaskService = () => {
   const webReqService = WebRequestService();
 
-  const createList = (title) => {
-    // Want to send a web request to create a list
-    webReqService.post('lists', { title });
+  const createList = async (title) => {
+    try {
+      const response = await webReqService.post('lists', { title });
+      return response.data;
+    } catch (error) {
+      console.error('Error creating list:', error);
+      throw error;
+    }
   };
 
   return {

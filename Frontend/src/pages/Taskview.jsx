@@ -1,12 +1,7 @@
-import TaskService from "../comp/taskService";
+
 
 const Taskview = () => {
-  const taskService = TaskService(); // Create an instance of TaskService
-
-  const createNewList = () => {
-    taskService.createList("testing"); // Use the instance to call createList
-    
-  };
+  
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-primary">
@@ -40,12 +35,12 @@ const Taskview = () => {
             </a>
           </div>
 
-          <button
-            onClick={createNewList}
+          <a
+            href="/newlist"
             className="bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg"
           >
             + New List
-          </button>
+          </a>
         </div>
         <div className="flex flex-col flex-grow bg-secondary p-10 rounded-r-xl">
           <h1 className="text-primary text-2xl font-medium tracking-wide">
